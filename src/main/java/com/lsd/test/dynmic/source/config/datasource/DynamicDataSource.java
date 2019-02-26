@@ -44,13 +44,13 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected String determineCurrentLookupKey() {
-        String tenantId = DataSourceContextHolder.getDataSourceKey();
+        String tenantId = DatabaseContextHolder.getDataSourceKey();
         return DataSourceUtil.getDataSourceBeanId(tenantId);
     }
 
     @Override
     protected DataSource determineTargetDataSource() {
-        String tenantId = DataSourceContextHolder.getDataSourceKey();
+        String tenantId = DatabaseContextHolder.getDataSourceKey();
         String beanKey = DataSourceUtil.getDataSourceBeanId(tenantId);
         if (!StringUtils.hasText(tenantId) || applicationContext.containsBean(beanKey)) {
             return super.determineTargetDataSource();

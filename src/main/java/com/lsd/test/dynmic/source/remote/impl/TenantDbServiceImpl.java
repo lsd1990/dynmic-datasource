@@ -39,7 +39,7 @@ public class TenantDbServiceImpl implements TenantDbService {
     }
 
     @Override
-    public Boolean exist(String publicKey) {
+    public Boolean exist(String tenantId) {
         return true;// TODO (lusudong, 2019/2/22)
     }
 }

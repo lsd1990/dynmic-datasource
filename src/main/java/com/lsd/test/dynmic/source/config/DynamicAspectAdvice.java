@@ -1,6 +1,6 @@
 package com.lsd.test.dynmic.source.config;
 
-import com.lsd.test.dynmic.source.config.datasource.DataSourceContextHolder;
+import com.lsd.test.dynmic.source.config.datasource.DatabaseContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -35,9 +35,9 @@ public class DynamicAspectAdvice {
             return null;
         }
         log.info("当前租户Id:{}", tenantId);
-        DataSourceContextHolder.setDataSourceKey(tenantId);
+        DatabaseContextHolder.setDataSourceKey(tenantId);
         Object result = jp.proceed();
-        DataSourceContextHolder.clearDataSourceKey();
+        DatabaseContextHolder.clearDataSourceKey();
         return result;
     }
 }

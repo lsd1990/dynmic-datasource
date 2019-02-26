@@ -8,5 +8,6 @@ public interface TenantDbService {
 
     List<TenantDbConfig> listAll();
 
-    Boolean exist(String publicKey);
+    Boolean exist(String tenantId);
+
 }
