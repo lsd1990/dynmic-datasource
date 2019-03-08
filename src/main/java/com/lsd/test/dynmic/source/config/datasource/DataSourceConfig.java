@@ -35,6 +35,9 @@ public class DataSourceConfig {
 
         DruidDataSource dataSource = new DruidDataSource();
 
+        dataSource.setUrl(databaseProperties.getDefaultUrl());
+        dataSource.setUsername(databaseProperties.getDefaultUserName());
+        dataSource.setPassword(databaseProperties.getDefaultPassword());
         dataSource.setInitialSize(databaseProperties.getInitialSize());
         dataSource.setMinIdle(databaseProperties.getMinIdle());
         dataSource.setMaxActive(databaseProperties.getMaxActive());

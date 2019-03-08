@@ -25,4 +25,8 @@ public class DatabaseProperties {
     private Boolean removeAbandoned;
     private Integer removeAbandonedTimeout;
 
+    private String defaultUrl;
+    private String defaultUserName;
+    private String defaultPassword;
+
 }

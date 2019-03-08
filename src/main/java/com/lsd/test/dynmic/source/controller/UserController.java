@@ -1,5 +1,6 @@
 package com.lsd.test.dynmic.source.controller;
 
+import com.lsd.test.dynmic.source.config.redis.RedisUtil;
 import com.lsd.test.dynmic.source.model.User;
 import com.lsd.test.dynmic.source.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,22 @@ public class UserController {
         userService.update(user);
 
         return "success";
+
+    }
+
+
+    @GetMapping("listFromRedis")
+    @ResponseBody
+    public String listFromRedis(@RequestParam String tenantId){
+
+        String test = (String)RedisUtil.get(tenantId, "test");
+
+        if(test == null){
+
+            RedisUtil.put(tenantId, "test", "test" + tenantId, 300);
+        }
+
+        return test;
 
     }
 }

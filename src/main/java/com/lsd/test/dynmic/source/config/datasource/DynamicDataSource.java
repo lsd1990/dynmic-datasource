@@ -2,6 +2,8 @@ package com.lsd.test.dynmic.source.config.datasource;
 
 import com.lsd.test.dynmic.source.remote.TenantDbService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -12,9 +14,10 @@ import org.springframework.util.StringUtils;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-@Slf4j
 @Component
 public class DynamicDataSource extends AbstractRoutingDataSource {
+
+    private static final Logger log = LoggerFactory.getLogger(DynamicDataSource.class);
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -37,6 +40,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
             try {
                 summoner.registerDynamicDataSources();
             } catch (Exception e) {
+
                 log.error("数据源初始化失败, Exception:", e);
             }
         }
