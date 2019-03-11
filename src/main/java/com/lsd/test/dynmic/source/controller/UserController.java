@@ -6,6 +6,8 @@ import com.lsd.test.dynmic.source.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -45,13 +47,12 @@ public class UserController {
 
     @GetMapping("listFromRedis")
     @ResponseBody
-    public String listFromRedis(@RequestParam String tenantId){
+    public Date listFromRedis(){
 
-        String test = (String)RedisUtil.get(tenantId, "test");
+        Date test = (Date)RedisUtil.get("test");
 
         if(test == null){
-
-            RedisUtil.put(tenantId, "test", "test" + tenantId, 300);
+            RedisUtil.put("test", Calendar.getInstance().getTime(), 300);
         }
 
         return test;

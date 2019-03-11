@@ -1,7 +1,7 @@
 package com.lsd.test.dynmic.source.config.datasource;
 
+import com.lsd.test.dynmic.source.config.AppContextHolder;
 import com.lsd.test.dynmic.source.remote.TenantDbService;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +48,13 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected String determineCurrentLookupKey() {
-        String tenantId = DatabaseContextHolder.getDataSourceKey();
+        String tenantId = AppContextHolder.getSourceKey();
         return DataSourceUtil.getDataSourceBeanId(tenantId);
     }
 
     @Override
     protected DataSource determineTargetDataSource() {
-        String tenantId = DatabaseContextHolder.getDataSourceKey();
+        String tenantId = AppContextHolder.getSourceKey();
         String beanKey = DataSourceUtil.getDataSourceBeanId(tenantId);
         if (!StringUtils.hasText(tenantId) || applicationContext.containsBean(beanKey)) {
             return super.determineTargetDataSource();
